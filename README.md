@@ -20,14 +20,19 @@ The app can fetch its content JSON from a URL at startup. Edit that file → rel
 No code change, no build, no deploy. If the URL fails, the last good copy (cached in the browser)
 or the bundled `portfolio.json` is used, so the site never breaks.
 
-One-time setup with a GitHub Gist (free):
+**Already set up:** production builds load content from this Gist (configured in `.env.production`):
+<https://gist.github.com/Uniquegaurav/b9017c5ce6c46c1426b56c1efe9d7ee1>
+→ open it, click **Edit**, change any text, **Update gist**, then reload the site.
+Keep `src/data/portfolio.json` roughly in sync — it's the offline/fallback copy.
+
+How it was set up (to recreate it elsewhere):
 
 1. Go to <https://gist.github.com>, create a gist with a file named `portfolio.json`, paste the
    contents of `src/data/portfolio.json`, and save it.
 2. Click **Raw**, copy the URL, and **remove the commit-hash part** so it always serves the latest:
    `https://gist.githubusercontent.com/<user>/<gist-id>/raw/portfolio.json`
-3. In Netlify → *Site configuration → Environment variables*, add `VITE_CONTENT_URL` = that URL,
-   then trigger **one** redeploy. (Locally: put it in `.env.local`, see `.env.example`.)
+3. Put `VITE_CONTENT_URL=<that URL>` in `.env.production` (or as a Netlify environment variable)
+   and deploy once. (Locally: put it in `.env.local`, see `.env.example`.)
 4. From now on, edit the gist in the browser and save. Reload the site to see it
    (GitHub's CDN can take up to a few minutes to serve the new version).
 
