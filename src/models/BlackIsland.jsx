@@ -60,6 +60,8 @@ export function BlackIsland({
   const handlePointerDown = (event) => {
     event.stopPropagation();
     event.preventDefault();
+    // Keep receiving move/up events even if the finger leaves the canvas
+    event.target.setPointerCapture?.(event.pointerId);
     setIsRotating(true);
 
     // Calculate the clientX based on whether it's a touch event or a mouse event
@@ -124,8 +126,14 @@ export function BlackIsland({
   useEffect(() => {
     // Add event listeners for pointer and keyboard events
     const canvas = gl.domElement;
+    // Tell mobile browsers the canvas handles its own touch gestures. Without this, Android
+    // takes over the swipe (fires "pointercancel" instead of "pointerup"), the island thinks the
+    // finger is still down, the auto-tour never resumes and dragging stutters.
+    canvas.style.touchAction = "none";
     canvas.addEventListener("pointerdown", handlePointerDown);
     canvas.addEventListener("pointerup", handlePointerUp);
+    canvas.addEventListener("pointercancel", handlePointerUp);
+    canvas.addEventListener("lostpointercapture", handlePointerUp);
     canvas.addEventListener("pointermove", handlePointerMove);
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
@@ -134,6 +142,8 @@ export function BlackIsland({
     return () => {
       canvas.removeEventListener("pointerdown", handlePointerDown);
       canvas.removeEventListener("pointerup", handlePointerUp);
+      canvas.removeEventListener("pointercancel", handlePointerUp);
+      canvas.removeEventListener("lostpointercapture", handlePointerUp);
       canvas.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
