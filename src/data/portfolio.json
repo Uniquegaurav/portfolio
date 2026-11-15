@@ -1,0 +1,512 @@
+{
+  "_readme": "Single source of truth for ALL site text. Edit here (or in the remote copy at VITE_CONTENT_URL — see README) and the site updates. Wrap nothing in HTML; plain strings only. Images: a file name from src/assets/icons|images, or a full https:// URL. Skill icons: a Simple Icons name (e.g. \"SiKotlin\"). Empty links are hidden.",
+  "profile": {
+    "name": "Kumar Gaurav",
+    "firstName": "Gaurav",
+    "role": "Senior Android Engineer",
+    "email": "kumargaurav.xqf@gmail.com",
+    "socials": [
+      {
+        "name": "GitHub",
+        "icon": "github.svg",
+        "link": "https://github.com/Uniquegaurav"
+      },
+      {
+        "name": "LinkedIn",
+        "icon": "linkedin.svg",
+        "link": "https://www.linkedin.com/in/kumar-gaurav-xqf/"
+      }
+    ]
+  },
+  "popup": {
+    "kicker": "A realm forged by Gaurav",
+    "title": "House of the Dragon",
+    "subtitle": "Here dwells Gaurav — a Senior Android Engineer who tames Kotlin the way riders tame dragons. Take flight around his island and uncover the five chapters of his saga.",
+    "exploreCta": "Explore the World",
+    "skipCta": "Skip to Portfolio"
+  },
+  "homeStages": [
+    {
+      "chapter": "Chapter I",
+      "title": "The Rider",
+      "icon": "🐉",
+      "text": "Hi, I'm Gaurav — Senior Android Engineer at Unacademy. I build apps people come back to, every single day.",
+      "textMobile": "Hi, I'm Gaurav — Senior Android Engineer at Unacademy.",
+      "chips": [
+        "4+ years",
+        "Bangalore, India"
+      ],
+      "ctaText": "",
+      "link": ""
+    },
+    {
+      "chapter": "Chapter II",
+      "title": "The Arsenal",
+      "icon": "⚔️",
+      "text": "My weapons of choice: Kotlin, Jetpack Compose and Kotlin Multiplatform — with Flutter and React Native always within reach.",
+      "textMobile": "Kotlin, Jetpack Compose & KMM — with Flutter and React Native within reach.",
+      "chips": [
+        "Kotlin",
+        "Compose",
+        "KMM",
+        "Flutter"
+      ],
+      "ctaText": "See Skills",
+      "link": "/about"
+    },
+    {
+      "chapter": "Chapter III",
+      "title": "The Battles",
+      "icon": "🛡️",
+      "text": "Campaigns won across Unacademy, InCred Finance and Nuclei — from deep linking and AI chatbots to credit card SDKs.",
+      "textMobile": "Campaigns won at Unacademy, InCred Finance and Nuclei.",
+      "chips": [
+        "54% installs recovered",
+        "4.1 → 4.5 ★",
+        "+6% D7"
+      ],
+      "ctaText": "See Experience",
+      "link": "/about"
+    },
+    {
+      "chapter": "Chapter IV",
+      "title": "The Forge",
+      "icon": "🔨",
+      "text": "Where side quests are forged: Ascent, a Kotlin Multiplatform app for location-based discovery, and Coders League, built from scratch.",
+      "textMobile": "Side quests forged: Ascent (KMM) and Coders League.",
+      "chips": [
+        "Ascent · KMM",
+        "Coders League"
+      ],
+      "ctaText": "See Projects",
+      "link": "/projects"
+    },
+    {
+      "chapter": "Chapter V",
+      "title": "The Raven",
+      "icon": "🪶",
+      "text": "Looking to hire a dragon rider or build something together? Send a raven — I answer every one.",
+      "textMobile": "Hiring or collaborating? Send a raven — I answer every one.",
+      "chips": [
+        "Open to opportunities"
+      ],
+      "ctaText": "Send a Raven",
+      "link": "/contact"
+    }
+  ],
+  "about": {
+    "eyebrow": "About Me",
+    "heading": "Hello, I'm Gaurav.",
+    "intro": "Passionate software developer with 4+ years of experience building Android and web applications. Quick to pick up new technologies and always looking for smart, efficient solutions. Skilled in handling the entire development process, from brainstorming ideas to launching and scaling products.",
+    "skillsHeading": "Skills.",
+    "experienceHeading": "Work Experience.",
+    "experienceIntro": "From growth funnels and AI features at Unacademy, to a multi-module KMM lending app for US credit unions, to Federal Bank's credit card stack — I own features end to end, from architecture to Play Store.",
+    "globe": {
+      "heading": "Home base",
+      "location": "Bangalore, India",
+      "badges": [
+        {
+          "icon": "📍",
+          "label": "Based in",
+          "value": "Bangalore, India"
+        },
+        {
+          "icon": "⏳",
+          "label": "Experience",
+          "value": "4+ years"
+        },
+        {
+          "icon": "🏰",
+          "label": "Companies",
+          "value": "Unacademy · InCred · Nuclei"
+        },
+        {
+          "icon": "👥",
+          "label": "Users reached",
+          "value": "70K+ daily learners"
+        }
+      ]
+    }
+  },
+  "skills": [
+    {
+      "name": "Kotlin",
+      "icon": "SiKotlin",
+      "color": "#7F52FF"
+    },
+    {
+      "name": "Jetpack Compose",
+      "icon": "SiJetpackcompose",
+      "color": "#4285F4"
+    },
+    {
+      "name": "Android",
+      "icon": "SiAndroid",
+      "color": "#3DDC84"
+    },
+    {
+      "name": "Java",
+      "icon": "SiOpenjdk",
+      "color": "#F89820"
+    },
+    {
+      "name": "Kotlin Multiplatform",
+      "icon": "SiKotlin",
+      "color": "#C711E1"
+    },
+    {
+      "name": "Flutter",
+      "icon": "SiFlutter",
+      "color": "#02569B"
+    },
+    {
+      "name": "Dart",
+      "icon": "SiDart",
+      "color": "#0175C2"
+    },
+    {
+      "name": "React Native",
+      "icon": "SiReact",
+      "color": "#61DAFB"
+    },
+    {
+      "name": "Firebase",
+      "icon": "SiFirebase",
+      "color": "#FFCA28"
+    },
+    {
+      "name": "Android Studio",
+      "icon": "SiAndroidstudio",
+      "color": "#3DDC84"
+    },
+    {
+      "name": "Gradle",
+      "icon": "SiGradle",
+      "color": "#5fb5c2"
+    },
+    {
+      "name": "JUnit",
+      "icon": "SiJunit5",
+      "color": "#25A162"
+    },
+    {
+      "name": "Git",
+      "icon": "SiGit",
+      "color": "#F05032"
+    },
+    {
+      "name": "GitHub Actions",
+      "icon": "SiGithubactions",
+      "color": "#2088FF"
+    },
+    {
+      "name": "Jenkins",
+      "icon": "SiJenkins",
+      "color": "#D24939"
+    },
+    {
+      "name": "Docker",
+      "icon": "SiDocker",
+      "color": "#2496ED"
+    },
+    {
+      "name": "Kubernetes",
+      "icon": "SiKubernetes",
+      "color": "#326CE5"
+    },
+    {
+      "name": "Figma",
+      "icon": "SiFigma",
+      "color": "#F24E1E"
+    },
+    {
+      "name": "JavaScript",
+      "icon": "SiJavascript",
+      "color": "#F7DF1E"
+    },
+    {
+      "name": "React",
+      "icon": "SiReact",
+      "color": "#61DAFB"
+    },
+    {
+      "name": "Node.js",
+      "icon": "SiNodedotjs",
+      "color": "#5FA04E"
+    },
+    {
+      "name": "Python",
+      "icon": "SiPython",
+      "color": "#3776AB"
+    },
+    {
+      "name": "MySQL",
+      "icon": "SiMysql",
+      "color": "#4479A1"
+    },
+    {
+      "name": "MongoDB",
+      "icon": "SiMongodb",
+      "color": "#47A248"
+    }
+  ],
+  "experiences": [
+    {
+      "title": "Senior Software Engineer, Android",
+      "company_name": "Unacademy",
+      "icon": "",
+      "date": "Feb 2026 - Present",
+      "points": [
+        "Engineered Google Ads deferred deep linking with AppsFlyer attribution fallback, recovering incorrectly routed paid installs by 54% and ensuring campaign-specific onboarding for new learners.",
+        "Architected a cost-efficient AI chatbot with caching layers and conversation history management, streamlining doubt resolution and increasing Play Store ratings from 4.1 to 4.5.",
+        "Integrated OTPless SDK with silent network authentication and OTP fallback, reducing signup drop-offs by 30%.",
+        "Delivered gamified, Rive-animated daily reward and streak experiences across Airlearn and Unacademy Sprint, driving over 6% improvement in D7 retention for 70K+ daily active users.",
+        "Tools: Kotlin, Compose, Java, XML, Fragments, Coroutines, React Native, Jenkins, Firebase, Paging 3, Rive, Lottie, Amplitude, ExoPlayer, CameraX."
+      ]
+    },
+    {
+      "title": "Software Engineer, Mobile",
+      "company_name": "InCred Finance",
+      "icon": "",
+      "date": "Dec 2024 - Feb 2026",
+      "points": [
+        "Led mobile development of Algebrik's cloud-native, AI-enabled loan origination platform for Credit Unions in the US, targeting 100K+ users on Android and iOS.",
+        "Built core flows including mobile authentication (OTP), camera-based KYC capture and secure document upload, enabling 95% digital onboarding for loan applicants.",
+        "Architected a scalable multi-module Android architecture spanning core, shared and feature modules, modularising 50%+ of the codebase and improving development and testing efficiency by 25% through developer tooling.",
+        "Tools: Jetpack Compose, KMM, Ktor, Koin, iOS, MVVM, MVI, CI/CD, Clean Architecture, SOLID Principles."
+      ]
+    },
+    {
+      "title": "Software Developer",
+      "company_name": "Nuclei",
+      "icon": "nuclei.png",
+      "date": "Mar 2022 - Dec 2024",
+      "points": [
+        "SaaS Marketplace: Spearheaded the development of a subscription marketplace from the ground up, leading to a 40-50% upsurge in Gross Merchandise Value monthly post-launch.",
+        "Accounted for approximately 26% of desktop and 43% of mobile screens, developing essential features such as Transaction screen, Login/Signup screen, User Migration and Order Review screen.",
+        "FedMobile Android and Card Stack: Led the Credit Card SDK team, creating essential features such as Razorpay Push Provisioning and the NCMC Wallet, which boosted functionality by 9%.",
+        "Developed the RuPay Floater Card (UPI-enabled credit cards), Secured Credit Card and revamped UPI Card Controls, resulting in a 4% increase in user transaction volume.",
+        "Tools: Core Java, RxJava, LiveData, Kotlin, Coroutines, Flows, Retrofit, OkHttp, Dagger Hilt, JUnit, Mockito, RoomDB, LeakCanary, ProGuard, Flutter, GitHub Actions."
+      ]
+    }
+  ],
+  "education": {
+    "school": "Siddaganga Institute Of Technology",
+    "degree": "Bachelor of Engineering in Computer Science",
+    "date": "Aug 2018 - Jun 2022",
+    "location": "Tumkur, Karnataka"
+  },
+  "projectsPage": {
+    "eyebrow": "My work",
+    "heading": "Projects.",
+    "description": "Side projects where I try new stacks before they reach production — from Kotlin Multiplatform apps with real-time location features to competitive coding platforms and automation tools."
+  },
+  "projects": [
+    {
+      "name": "Ascent App",
+      "description": "Kotlin Multiplatform (KMM) app integrating Google Maps SDK, geolocation and contact discovery, enabling location-based exploration and social discovery while reducing duplicated Android/iOS business logic by 40%.",
+      "tags": [
+        "KMM",
+        "Google Maps SDK",
+        "Jetpack",
+        "WebSockets",
+        "NodeJS"
+      ],
+      "image": "",
+      "source_code_link": "https://github.com/Uniquegaurav"
+    },
+    {
+      "name": "Coders League",
+      "description": "Coding platform that offers a competitive environment for practicing problems, with features to create and join public coding lobbies and share real-time updates.",
+      "tags": [
+        "ReactJS",
+        "Redux",
+        "NodeJS",
+        "Express",
+        "MongoDB"
+      ],
+      "image": "coders_league.jpg",
+      "source_code_link": "https://codersleague.netlify.app/#/"
+    },
+    {
+      "name": "Instagram Bot",
+      "description": "Instagram bot proficient in user account management, interaction (liking, following, unfollowing) and data extraction from varied Instagram profiles.",
+      "tags": [
+        "Python",
+        "Pandas",
+        "BeautifulSoup",
+        "Selenium"
+      ],
+      "image": "insta_bot.jpg",
+      "source_code_link": "https://github.com/Uniquegaurav/InstaBot1"
+    }
+  ],
+  "cta": {
+    "text": "Have a project in mind?\nLet's build something together!",
+    "button": "Contact"
+  },
+  "contact": {
+    "eyebrow": "Get in touch",
+    "heading": "Contact.",
+    "successMessage": "Thank you. I will get back to you as soon as possible.",
+    "errorMessage": "Something went wrong. Please try again.",
+    "emailjs": {
+      "serviceId": "service_nazsit9",
+      "templateId": "template_2any6sq",
+      "publicKey": "yc8oXrZwyNUilzhXu"
+    },
+    "ctaHeading": "Other ways to reach me",
+    "resume": {
+      "label": "Request Resume",
+      "description": "Opens an email asking for my latest resume",
+      "subject": "Resume request — via your portfolio",
+      "body": "Hi Gaurav,\n\nI came across your portfolio and would love to see your latest resume.\n\nName:\nCompany / Role:\n\nThanks!"
+    },
+    "linkedinDescription": "Connect with me professionally",
+    "githubDescription": "Browse my code & side quests"
+  },
+  "world": {
+    "hint": "Drag to take the reins",
+    "hintMobile": "Swipe to steer"
+  },
+  "achievements": [
+    {
+      "id": "first-flight",
+      "icon": "🐉",
+      "title": "First Flight",
+      "description": "Entered the House of the Dragon"
+    },
+    {
+      "id": "loremaster",
+      "icon": "📜",
+      "title": "Loremaster",
+      "description": "Uncovered all five chapters"
+    },
+    {
+      "id": "scholar",
+      "icon": "🧠",
+      "title": "Scholar",
+      "description": "Studied Gaurav's skills & battles"
+    },
+    {
+      "id": "treasure-hunter",
+      "icon": "💎",
+      "title": "Treasure Hunter",
+      "description": "Found the projects vault"
+    },
+    {
+      "id": "raven-sent",
+      "icon": "🪶",
+      "title": "Raven Sent",
+      "description": "Sent Gaurav a message"
+    },
+    {
+      "id": "kindred-spirit",
+      "icon": "🫶",
+      "title": "Kindred Spirit",
+      "description": "Discovered the person behind the code"
+    }
+  ],
+  "ui": {
+    "nav": [
+      {
+        "to": "/",
+        "label": "World"
+      },
+      {
+        "to": "/about",
+        "label": "About"
+      },
+      {
+        "to": "/projects",
+        "label": "Projects"
+      },
+      {
+        "to": "/contact",
+        "label": "Contact"
+      }
+    ],
+    "loader": "Summoning the dragon…",
+    "pageLoading": "Loading…",
+    "questTag": "NEW",
+    "achievementLabel": "Achievement unlocked",
+    "soundOn": "Sound on",
+    "soundOff": "Sound off",
+    "footer": "All rights reserved.",
+    "contactForm": {
+      "directEmailPrefix": "Or write to me directly at",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "Please enter your name",
+      "emailLabel": "Your email",
+      "emailPlaceholder": "Please enter your email",
+      "messageLabel": "Your Message",
+      "messagePlaceholder": "Please enter your message",
+      "send": "Send",
+      "sending": "Sending..."
+    },
+    "personalCta": {
+      "kicker": "Side quest unlocked",
+      "title": "Beyond the Code",
+      "text": "The hobbies, interests and little things that make me, me — away from the keyboard.",
+      "button": "Enter"
+    }
+  },
+  "personal": {
+    "_note": "Personal page (/personal). Replace these sample entries with your own hobbies & interests.",
+    "eyebrow": "Beyond the code",
+    "heading": "Off the Clock.",
+    "intro": "When I'm not shipping Android apps, this is where you'll find me. A few things that keep me curious, recharged and inspired.",
+    "hobbiesHeading": "Hobbies & Interests",
+    "hobbies": [
+      {
+        "icon": "🎮",
+        "title": "Gaming",
+        "description": "Story-driven and open-world games — the reason this portfolio looks like one."
+      },
+      {
+        "icon": "✈️",
+        "title": "Travel",
+        "description": "Exploring new places, food and people whenever I get the chance."
+      },
+      {
+        "icon": "📚",
+        "title": "Reading",
+        "description": "Tech blogs, product thinking and the occasional fantasy saga."
+      },
+      {
+        "icon": "🏋️",
+        "title": "Fitness",
+        "description": "Staying active to keep the mind as sharp as the code."
+      }
+    ],
+    "currentlyHeading": "Current Quest Log",
+    "currently": [
+      {
+        "label": "Learning",
+        "value": "Kotlin Multiplatform & Compose Multiplatform"
+      },
+      {
+        "label": "Building",
+        "value": "Ascent — a KMM app for location-based discovery"
+      },
+      {
+        "label": "Exploring",
+        "value": "On-device AI on Android"
+      }
+    ],
+    "factsHeading": "Fun Facts",
+    "facts": [
+      "Built my first app back in engineering college.",
+      "This portfolio is a game — try to unlock every achievement.",
+      "Firm believer that great UX is felt, not seen."
+    ],
+    "quote": {
+      "text": "Dracarys — ship it.",
+      "by": "Every release day"
+    }
+  },
+  "seo": {
+    "title": "Kumar Gaurav — Senior Android Engineer",
+    "description": "Kumar Gaurav — Senior Android Engineer. Explore my portfolio in a 3D dragon world."
+  }
+}

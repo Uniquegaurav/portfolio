@@ -1,22 +1,40 @@
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 
 import rose from "../assets/rose.mp3";
 import { HomeInfo, Loader, Popup } from "../components";
-import { soundoff, soundon } from "../assets/icons";
-import { BlackIsland, Dragon, Winter} from "../models";
+// Import only the models this page uses (the barrel file would also preload Earth/Bird)
+import { BlackIsland } from "../models/BlackIsland";
+import { Dragon } from "../models/Dragon";
+import { Winter } from "../models/Winter";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
+import { homeStagesInfo, world } from "../constants";
+import useSound from "../hooks/useSound";
+import { unlock } from "../lib/achievements";
+
+// Rendered inside the Canvas' Suspense after the models, so it mounts only once they've loaded.
+const SceneReady = ({ onReady }) => {
+  useEffect(() => {
+    onReady();
+  }, [onReady]);
+  return null;
+};
 
 const Home = () => {
-  const audioRef = useRef(new Audio(rose));
-  audioRef.current.volume = 0.4;
-  audioRef.current.loop = true;
+  // Created lazily on first play — the 5.5MB track is no longer fetched on page load
+  const audioRef = useRef(null);
 
   const [currentStage, setCurrentStage] = useState(0);
   const [isRotating, setIsRotating] = useState(false);
-  const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [sceneReady, setSceneReady] = useState(false);
+  const markSceneReady = useCallback(() => setSceneReady(true), []);
+  // Auto-tour runs once the visitor has entered the world (or on return visits, straight away)
+  const [touring, setTouring] = useState(false);
+  const [visited, setVisited] = useState(() => new Set());
+  const [hasDragged, setHasDragged] = useState(false);
+  const { muted } = useSound();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -24,8 +42,32 @@ const Home = () => {
     const shouldShowPopup = !localStorage.getItem("popupAlreadyShown");
     if (shouldShowPopup) {
       setShowPopup(true);
+    } else {
+      setTouring(true);
     }
   }, []);
+
+  // Track chapters seen; all five → achievement
+  useEffect(() => {
+    if (!currentStage) return;
+    setVisited((v) => (v.has(currentStage) ? v : new Set(v).add(currentStage)));
+  }, [currentStage]);
+
+  useEffect(() => {
+    if (visited.size === homeStagesInfo.length) unlock("loremaster");
+  }, [visited]);
+
+  useEffect(() => {
+    if (isRotating) setHasDragged(true);
+  }, [isRotating]);
+
+  // The controls hint is only a nudge: fade it out a few seconds after the tour starts
+  const [hintVisible, setHintVisible] = useState(true);
+  useEffect(() => {
+    if (!touring) return undefined;
+    const t = setTimeout(() => setHintVisible(false), 6000);
+    return () => clearTimeout(t);
+  }, [touring]);
   
   useEffect(() => {
     if (location.pathname === '/') {
@@ -40,21 +82,37 @@ const Home = () => {
       document.documentElement.style.overflow = '';
     };
   }, [location.pathname]);
+  // Music plays while touring the world, unless sound is switched off in the nav
+  const musicOn = touring && !muted;
   useEffect(() => {
-    if (isPlayingMusic) {
-      audioRef.current.play();
+    if (!musicOn) {
+      audioRef.current?.pause();
+      return undefined;
     }
-
+    if (!audioRef.current) {
+      audioRef.current = new Audio(rose);
+      audioRef.current.volume = 0.4;
+      audioRef.current.loop = true;
+    }
+    const audio = audioRef.current;
+    const start = () => audio.play().catch(() => {});
+    // Browsers block autoplay without a user gesture (e.g. return visits) → start on first tap/click
+    audio.play().catch(() => window.addEventListener("pointerdown", start, { once: true }));
     return () => {
-      audioRef.current.pause();
+      window.removeEventListener("pointerdown", start);
+      audio.pause();
     };
-  }, [isPlayingMusic]);
+  }, [musicOn]);
 
   const handleSeeHome = () => {
-    setCurrentStage(1);
     localStorage.setItem("popupAlreadyShown", "true");
     setShowPopup(false);
+    // The click is a user gesture, so the music effect is allowed to start playing now
+    setTouring(true);
+    unlock("first-flight");
   };
+
+
 
   const handleJumpToAbout = () => {
     localStorage.setItem("popupAlreadyShown", "true");
@@ -97,23 +155,30 @@ const Home = () => {
 
   return (
     <section style={{overflow:"hidden"}} className="w-full h-screen relative">
-      <Suspense
-        fallback={
-          <Canvas className="w-full h-full flex items-center justify-center">
-            <Loader />{" "}
-          </Canvas>
-        }
-      >
-        {showPopup && (
+        {/* Popup waits for the world to finish loading (the loader shows until then) */}
+        {sceneReady && showPopup && (
           <Popup
             onClose={() => setShowPopup(false)}
             onSeeHome={handleSeeHome}
             onJumpToAbout={handleJumpToAbout}
           />
         )}
-        <div className="absolute bottom-24 left-10 md:bottom-24 md:left-10 z-10 flex items-center justify-center">
-          {currentStage>0 && <HomeInfo currentStage={currentStage} />}
-        </div>
+
+        {/* Soft vignette: frames the scene and keeps the chapter card readable over bright snow */}
+        <div className="world-vignette pointer-events-none absolute inset-0 z-[1]" aria-hidden="true" />
+
+        {sceneReady && !showPopup && (
+          <HomeInfo currentStage={currentStage || null} visited={visited} />
+        )}
+
+        {/* Controls hint — fades once the visitor has tried dragging */}
+        {sceneReady && !showPopup && (
+          <div className={`world-hint pointer-events-none absolute bottom-6 left-1/2 z-10 -translate-x-1/2 transition-opacity duration-700 ${hasDragged || !hintVisible ? "opacity-0" : "opacity-100"}`}>
+            <span className="world-hint-icon" aria-hidden="true" />
+            <span className="hidden sm:inline">{world.hint}</span>
+            <span className="sm:hidden">{world.hintMobile}</span>
+          </div>
+        )}
 
         <Canvas
          style={{overflow:"hidden"}}
@@ -124,7 +189,7 @@ const Home = () => {
         >
           <directionalLight position={[1.8, 1.2, 1.7]} intensity={4} />
           <ambientLight intensity={1.7} />
-          <pointLight position={[0.8, 0.7, 0.5]} intesity={3} />
+          <pointLight position={[0.8, 0.7, 0.5]} intensity={3} />
           <spotLight
             position={[4, 2, 2]}
             angle={0.25}
@@ -137,12 +202,14 @@ const Home = () => {
             intensity={2}
           />
 
-          {/* <Bird /> */}
-          <Winter isRotating={isRotating} />
+          {/* The Canvas handles model loading itself, so the loader lives inside it */}
+          <Suspense fallback={<Loader />}>
+          <Winter isRotating={isRotating || touring} />
           <BlackIsland
             isRotating={isRotating}
             setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
+            autoRotate={touring}
             position={islandPosition}
             rotation={[0.4, 4.2, 0]}
             scale={islandScale}
@@ -153,18 +220,10 @@ const Home = () => {
             rotation={[0.6, 1.7, 0]}
             scale={biplaneScale}
           />
+          <SceneReady onReady={markSceneReady} />
+          </Suspense>
         </Canvas>
-      </Suspense>
 
-      <div className="absolute top-4 left-10">
-        <img
-          src={!isPlayingMusic ? soundoff : soundon}
-          alt="jukebox"
-          onClick={() => setIsPlayingMusic(!isPlayingMusic)}
-          className="w-10 h-10 cursor-pointer object-contain"
-          style={{ filter: 'hue-rotate(90deg) brightness(1)' }}
-        />
-      </div>
     </section>
   );
 };

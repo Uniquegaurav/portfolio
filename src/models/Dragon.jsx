@@ -689,4 +689,4 @@ export function Dragon({isRotating, ...props }) {
   );
 }
 
-useGLTF.preload("scene");
+useGLTF.preload(scene);

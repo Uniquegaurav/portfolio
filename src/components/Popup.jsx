@@ -1,79 +1,44 @@
-import React from "react";
+import { popup } from "../constants";
+import { sfx } from "../lib/sfx";
 
 const Popup = ({ onClose, onSeeHome, onJumpToAbout }) => {
   const handleSeeHome = () => {
+    sfx.portal();
     onClose();
     onSeeHome();
   };
 
   const handleJumpToAbout = () => {
+    sfx.click();
     onClose();
     onJumpToAbout();
   };
-  const commonStyle = {
-    backgroundColor: "rgba(173, 216, 230, 0.3)",
-    backdropFilter: "blur(3px)",
-    border: "1px solid rgba(255, 255, 255, 0.2)",
-    width: "90%",
-    height: "auto",
-    maxWidth : "420px",
-    minHeight : "210px",
-    padding: "10px",
-    borderRadius: "10px",
-  };
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        background: "rgba(0, 0, 0, 0.6)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 9999,
-      }}
-    >
-      <div style={commonStyle}>
-        <h1 className="sm:text-base sm:leading-snug text-center py-4 px-8 text-white font-bold mx-5">
-          WELCOME TO HOUSE OF THE DRAGON
-        </h1>
-        <div
-          style={{
-            paddingLeft: "10px",
-            paddingRight: "10px",
-          }}
-        >
-          <h3 className="text-center text-sm text-gray-300">
-          Swipe left and right to explore. Tap the navigation icon to access the About page.
-          </h3>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            marginTop: "20px",
-            paddingLeft: "10px",
-            paddingRight: "10px",
-          }}
-        >
-          <button
-            onClick={handleSeeHome}
-            type="button"
-            class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg dark:shadow-teal-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-          >
-            Explore The World
-          </button>
+    <div className='popup-backdrop fixed inset-0 z-[9999] flex items-center justify-center p-4'>
+      <div
+        role='dialog'
+        aria-modal='true'
+        aria-labelledby='popup-title'
+        className='popup-panel relative w-full max-w-[480px] overflow-hidden rounded-2xl border border-white/20 px-6 pb-7 pt-8 text-center sm:px-9'
+        style={{ backgroundColor: "rgba(173, 216, 230, 0.22)" }}
+      >
+        <span className='quest-glint' aria-hidden='true' />
+        <div className='popup-emblem mx-auto grid h-16 w-16 place-items-center rounded-full text-3xl'>🐉</div>
 
-          <button
-            onClick={handleJumpToAbout}
-            type="button"
-            class="text-teal-400 hover:text-white border border-teal-500 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-teal-500 dark:text-white dark:hover:text-white dark:hover:bg-teal-600 dark:focus:ring-teal-800"
-          >
-            Skip to Main Porfolio
+        <p className='mt-4 text-[11px] font-bold uppercase tracking-[0.35em] text-teal-200'>{popup.kicker}</p>
+        <h1 id='popup-title' className='mt-2 font-cinzel text-2xl font-bold uppercase leading-tight tracking-wider text-white drop-shadow-[0_2px_18px_rgba(45,212,191,0.45)] sm:text-3xl'>
+          {popup.title}
+        </h1>
+        <div className='mx-auto my-4 h-px w-24 bg-gradient-to-r from-transparent via-teal-300/70 to-transparent' />
+        <p className='mx-auto max-w-sm text-sm leading-relaxed text-gray-100 sm:text-[15px]'>{popup.subtitle}</p>
+
+        <div className='mt-7 flex flex-col justify-center gap-3 sm:flex-row'>
+          <button onClick={handleSeeHome} onMouseEnter={sfx.hover} type='button' className='btn popup-cta'>
+            {popup.exploreCta}
+          </button>
+          <button onClick={handleJumpToAbout} onMouseEnter={sfx.hover} type='button' className='btn-outline text-white'>
+            {popup.skipCta}
           </button>
         </div>
       </div>

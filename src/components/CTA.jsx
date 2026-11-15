@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
+import { cta } from "../constants";
 
 const CTA = () => {
+  const [first, ...rest] = cta.text.split("\n");
   return (
     <section className='cta'>
       <p className='cta-text'>
-        Have a project in mind? <br className='sm:block hidden' />
-        Let’s build something together!
+        {first} <br className='sm:block hidden' />
+        <span className='teal-text-gradient'>{rest.join(" ")}</span>
       </p>
       <Link to='/contact' className='btn'>
-        Contact
+        {cta.button}
       </Link>
     </section>
   );
