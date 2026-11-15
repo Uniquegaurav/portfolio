@@ -141,7 +141,7 @@ const HomeInfo = ({ currentStage, visited }) => {
   // Bottom placement keeps the dragon (centre of the scene) clear
   const placement = mobile
     ? "inset-x-3 bottom-[68px]" // compact card above the swipe hint
-    : "left-6 bottom-8 w-[440px] lg:left-10"; // bottom-left panel
+    : "left-10 bottom-20 w-[440px] lg:left-20 xl:left-28"; // lower-left, inset from the corner
 
   return (
     <div key={`${mobile ? "m" : "d"}-${shownStage}`} className={`absolute z-10 ${placement} ${leaving ? "quest-exit" : "quest-enter"}`}>

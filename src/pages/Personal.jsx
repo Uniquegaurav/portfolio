@@ -118,7 +118,7 @@ const Personal = () => {
           <p className='font-cinzel text-2xl font-bold text-frost sm:text-4xl'>
             “<span className='teal-text-gradient'>{personal.quote.text}</span>”
           </p>
-          {personal.quote.by && <footer className='mt-3 text-sm uppercase tracking-[0.25em] text-mist'>— {personal.quote.by}</footer>}
+          {personal.quote.by && <footer className='mt-3 text-sm uppercase tracking-[0.25em] text-mist'>{personal.quote.by}</footer>}
         </motion.blockquote>
       )}
 
