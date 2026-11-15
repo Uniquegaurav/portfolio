@@ -1,7 +1,6 @@
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useCallback, useEffect, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 
-import rose from "../assets/rose.mp3";
 import { HomeInfo, Loader, Popup } from "../components";
 // Import only the models this page uses (the barrel file would also preload Earth/Bird)
 import { BlackIsland } from "../models/BlackIsland";
@@ -10,7 +9,7 @@ import { Winter } from "../models/Winter";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import { homeStagesInfo, world } from "../constants";
-import useSound from "../hooks/useSound";
+import { music } from "../lib/music";
 import { unlock } from "../lib/achievements";
 
 // Rendered inside the Canvas' Suspense after the models, so it mounts only once they've loaded.
@@ -22,8 +21,6 @@ const SceneReady = ({ onReady }) => {
 };
 
 const Home = () => {
-  // Created lazily on first play — the 5.5MB track is no longer fetched on page load
-  const audioRef = useRef(null);
 
   const [currentStage, setCurrentStage] = useState(0);
   const [isRotating, setIsRotating] = useState(false);
@@ -34,7 +31,6 @@ const Home = () => {
   const [touring, setTouring] = useState(false);
   const [visited, setVisited] = useState(() => new Set());
   const [hasDragged, setHasDragged] = useState(false);
-  const { muted } = useSound();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -44,7 +40,10 @@ const Home = () => {
       setShowPopup(true);
     } else {
       setTouring(true);
+      // Return visit: no click yet, so the browser may block this; music.js then starts on the first tap
+      music.start();
     }
+    return () => music.stop();
   }, []);
 
   // Track chapters seen; all five → achievement
@@ -82,32 +81,13 @@ const Home = () => {
       document.documentElement.style.overflow = '';
     };
   }, [location.pathname]);
-  // Music plays while touring the world, unless sound is switched off in the nav
-  const musicOn = touring && !muted;
-  useEffect(() => {
-    if (!musicOn) {
-      audioRef.current?.pause();
-      return undefined;
-    }
-    if (!audioRef.current) {
-      audioRef.current = new Audio(rose);
-      audioRef.current.volume = 0.4;
-      audioRef.current.loop = true;
-    }
-    const audio = audioRef.current;
-    const start = () => audio.play().catch(() => {});
-    // Browsers block autoplay without a user gesture (e.g. return visits) → start on first tap/click
-    audio.play().catch(() => window.addEventListener("pointerdown", start, { once: true }));
-    return () => {
-      window.removeEventListener("pointerdown", start);
-      audio.pause();
-    };
-  }, [musicOn]);
+
 
   const handleSeeHome = () => {
     localStorage.setItem("popupAlreadyShown", "true");
     setShowPopup(false);
-    // The click is a user gesture, so the music effect is allowed to start playing now
+    // Must run synchronously inside the click: mobile browsers only allow audio to start here
+    music.start();
     setTouring(true);
     unlock("first-flight");
   };
@@ -150,6 +130,10 @@ const Home = () => {
     return [screenScale, screenPosition];
   };
 
+  // Phones: wider camera (portrait screens crop the scene and it looked zoomed in) and a
+  // capped pixel ratio so the GPU isn't rendering 3x-density frames
+  const isMobile = window.innerWidth < 768;
+
   const [biplaneScale, biplanePosition] = adjustBiplaneForScreenSize();
   const [islandScale, islandPosition] = adjustIslandForScreenSize();
 
@@ -185,7 +169,9 @@ const Home = () => {
           className={`w-full h-screen bg-transparent ${
             isRotating ? "cursor-grabbing" : "cursor-grab"
           }`}
-          camera={{ near: 0.1, far: 1000 }}
+          camera={{ near: 0.1, far: 1000, fov: isMobile ? 88 : 75 }}
+          dpr={[1, isMobile ? 1.5 : 2]}
+          gl={{ powerPreference: "high-performance", antialias: !isMobile }}
         >
           <directionalLight position={[1.8, 1.2, 1.7]} intensity={4} />
           <ambientLight intensity={1.7} />
