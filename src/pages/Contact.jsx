@@ -16,15 +16,14 @@ import { sfx } from "../lib/sfx";
 const TYPING_IDLE_MS = 1500;
 
 const linkFor = (name) => profile.socials.find((s) => s.name === name)?.link;
-const resumeMailto = () =>
-  `mailto:${profile.email}?subject=${encodeURIComponent(contact.resume.subject)}&body=${encodeURIComponent(contact.resume.body)}`;
 
 // Action cards under the form — empty links are skipped
 const actions = () =>
   [
     { key: "linkedin", Icon: FiLinkedin, title: "LinkedIn", description: contact.linkedinDescription, href: linkFor("LinkedIn"), external: true },
     { key: "github", Icon: FiGithub, title: "GitHub", description: contact.githubDescription, href: linkFor("GitHub"), external: true },
-    { key: "resume", Icon: FiFileText, title: contact.resume.label, description: contact.resume.description, href: resumeMailto(), external: false },
+    // Opens the resume on Google Drive, where visitors can request access
+    { key: "resume", Icon: FiFileText, title: contact.resume.label, description: contact.resume.description, href: contact.resume.link, external: true },
   ].filter((a) => a.href);
 
 const ActionCard = ({ action, index }) => (

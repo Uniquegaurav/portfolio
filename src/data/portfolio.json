@@ -21,7 +21,7 @@
   "popup": {
     "kicker": "A realm forged by Gaurav",
     "title": "House of the Dragon",
-    "subtitle": "Here dwells Gaurav — a Senior Android Engineer who tames Kotlin the way riders tame dragons. Take flight around his island and uncover the five chapters of his saga.",
+    "subtitle": "Here dwells Gaurav, a Senior Android Engineer who tames Kotlin the way riders tame dragons. Take flight around his island and uncover the five chapters of his saga.",
     "exploreCta": "Explore the World",
     "skipCta": "Skip to Portfolio"
   },
@@ -30,8 +30,8 @@
       "chapter": "Chapter I",
       "title": "The Rider",
       "icon": "🐉",
-      "text": "Hi, I'm Gaurav — Senior Android Engineer at Unacademy. I build apps people come back to, every single day.",
-      "textMobile": "Hi, I'm Gaurav — Senior Android Engineer at Unacademy.",
+      "text": "Hi, I'm Gaurav, a Senior Android Engineer at Unacademy. I build apps people come back to, every single day.",
+      "textMobile": "Hi, I'm Gaurav, a Senior Android Engineer at Unacademy.",
       "chips": [
         "4+ years",
         "Bangalore, India"
@@ -43,8 +43,8 @@
       "chapter": "Chapter II",
       "title": "The Arsenal",
       "icon": "⚔️",
-      "text": "My weapons of choice: Kotlin, Jetpack Compose and Kotlin Multiplatform — with Flutter and React Native always within reach.",
-      "textMobile": "Kotlin, Jetpack Compose & KMM — with Flutter and React Native within reach.",
+      "text": "My weapons of choice are Kotlin, Jetpack Compose and Kotlin Multiplatform, with Flutter and React Native always within reach.",
+      "textMobile": "Kotlin, Jetpack Compose and KMM, with Flutter and React Native within reach.",
       "chips": [
         "Kotlin",
         "Compose",
@@ -58,7 +58,7 @@
       "chapter": "Chapter III",
       "title": "The Battles",
       "icon": "🛡️",
-      "text": "Campaigns won across Unacademy, InCred Finance and Nuclei — from deep linking and AI chatbots to credit card SDKs.",
+      "text": "Campaigns won across Unacademy, InCred Finance and Nuclei, from deep linking and AI chatbots to credit card SDKs.",
       "textMobile": "Campaigns won at Unacademy, InCred Finance and Nuclei.",
       "chips": [
         "54% installs recovered",
@@ -85,8 +85,8 @@
       "chapter": "Chapter V",
       "title": "The Raven",
       "icon": "🪶",
-      "text": "Looking to hire a dragon rider or build something together? Send a raven — I answer every one.",
-      "textMobile": "Hiring or collaborating? Send a raven — I answer every one.",
+      "text": "Looking to hire a dragon rider or build something together? Send a raven. I answer every one.",
+      "textMobile": "Hiring or collaborating? Send a raven. I answer every one.",
       "chips": [
         "Open to opportunities"
       ],
@@ -100,7 +100,7 @@
     "intro": "Passionate software developer with 4+ years of experience building Android and web applications. Quick to pick up new technologies and always looking for smart, efficient solutions. Skilled in handling the entire development process, from brainstorming ideas to launching and scaling products.",
     "skillsHeading": "Skills.",
     "experienceHeading": "Work Experience.",
-    "experienceIntro": "From growth funnels and AI features at Unacademy, to a multi-module KMM lending app for US credit unions, to Federal Bank's credit card stack — I own features end to end, from architecture to Play Store.",
+    "experienceIntro": "From growth funnels and AI features at Unacademy, to a multi-module KMM lending app for US credit unions, to Federal Bank's credit card stack. I own features end to end, from architecture all the way to the Play Store.",
     "globe": {
       "heading": "Home base",
       "location": "Bangalore, India",
@@ -126,128 +126,219 @@
           "value": "70K+ daily learners"
         }
       ]
-    }
+    },
+    "skillsIntro": "Native Android is my home turf, but I like knowing the whole stack. Here is what I work with, grouped by what it's for."
   },
   "skills": [
     {
-      "name": "Kotlin",
-      "icon": "SiKotlin",
-      "color": "#7F52FF"
+      "group": "Languages",
+      "description": "Kotlin and Java every day, plus the languages I reach for on cross platform, web and backend work.",
+      "items": [
+        {
+          "name": "Kotlin",
+          "icon": "SiKotlin",
+          "color": "#7F52FF"
+        },
+        {
+          "name": "Java",
+          "icon": "SiOpenjdk",
+          "color": "#F89820"
+        },
+        {
+          "name": "Dart",
+          "icon": "SiDart",
+          "color": "#0175C2"
+        },
+        {
+          "name": "JavaScript",
+          "icon": "SiJavascript",
+          "color": "#F7DF1E"
+        },
+        {
+          "name": "C++",
+          "icon": "SiCplusplus",
+          "color": "#00599C"
+        },
+        {
+          "name": "Python",
+          "icon": "SiPython",
+          "color": "#3776AB"
+        },
+        {
+          "name": "Node.js",
+          "icon": "SiNodedotjs",
+          "color": "#5FA04E"
+        }
+      ]
     },
     {
-      "name": "Jetpack Compose",
-      "icon": "SiJetpackcompose",
-      "color": "#4285F4"
+      "group": "Mobile & Web",
+      "description": "Native Android with Jetpack Compose first, with Kotlin Multiplatform, Flutter and React Native for shipping on iOS too.",
+      "items": [
+        {
+          "name": "Android",
+          "icon": "SiAndroid",
+          "color": "#3DDC84"
+        },
+        {
+          "name": "Jetpack Compose",
+          "icon": "SiJetpackcompose",
+          "color": "#4285F4"
+        },
+        {
+          "name": "Kotlin Multiplatform",
+          "icon": "SiKotlin",
+          "color": "#C711E1"
+        },
+        {
+          "name": "Flutter",
+          "icon": "SiFlutter",
+          "color": "#02569B"
+        },
+        {
+          "name": "React Native",
+          "icon": "SiReact",
+          "color": "#61DAFB"
+        },
+        {
+          "name": "React",
+          "icon": "SiReact",
+          "color": "#61DAFB"
+        },
+        {
+          "name": "Coroutines & Flow",
+          "icon": "FiZap",
+          "color": "#7F52FF"
+        },
+        {
+          "name": "Dagger Hilt",
+          "icon": "FiLayers",
+          "color": "#3DDC84"
+        }
+      ]
     },
     {
-      "name": "Android",
-      "icon": "SiAndroid",
-      "color": "#3DDC84"
+      "group": "Architecture & Quality",
+      "description": "Apps that scale with the team: modular codebases, clean architecture, solid test coverage and close attention to performance and memory.",
+      "items": [
+        {
+          "name": "Clean Architecture",
+          "icon": "FiLayers",
+          "color": "#5eead4"
+        },
+        {
+          "name": "MVVM / MVI",
+          "icon": "FiGrid",
+          "color": "#5eead4"
+        },
+        {
+          "name": "Multi-module",
+          "icon": "FiBox",
+          "color": "#5eead4"
+        },
+        {
+          "name": "JUnit",
+          "icon": "SiJunit5",
+          "color": "#25A162"
+        },
+        {
+          "name": "Mockito",
+          "icon": "FiCheckCircle",
+          "color": "#78a641"
+        },
+        {
+          "name": "Performance",
+          "icon": "FiActivity",
+          "color": "#ff8a65"
+        },
+        {
+          "name": "Memory Management",
+          "icon": "FiCpu",
+          "color": "#ff8a65"
+        }
+      ]
     },
     {
-      "name": "Java",
-      "icon": "SiOpenjdk",
-      "color": "#F89820"
+      "group": "Tools & Platforms",
+      "description": "Everything around shipping: builds, CI/CD pipelines, containers, analytics and design handoff.",
+      "items": [
+        {
+          "name": "Android Studio",
+          "icon": "SiAndroidstudio",
+          "color": "#3DDC84"
+        },
+        {
+          "name": "Gradle",
+          "icon": "SiGradle",
+          "color": "#5fb5c2"
+        },
+        {
+          "name": "Firebase",
+          "icon": "SiFirebase",
+          "color": "#FFCA28"
+        },
+        {
+          "name": "Git",
+          "icon": "SiGit",
+          "color": "#F05032"
+        },
+        {
+          "name": "GitHub Actions",
+          "icon": "SiGithubactions",
+          "color": "#2088FF"
+        },
+        {
+          "name": "Jenkins",
+          "icon": "SiJenkins",
+          "color": "#D24939"
+        },
+        {
+          "name": "Docker",
+          "icon": "SiDocker",
+          "color": "#2496ED"
+        },
+        {
+          "name": "Kubernetes",
+          "icon": "SiKubernetes",
+          "color": "#326CE5"
+        },
+        {
+          "name": "Azure",
+          "icon": "SiMicrosoftazure",
+          "color": "#0078D4"
+        },
+        {
+          "name": "Figma",
+          "icon": "SiFigma",
+          "color": "#F24E1E"
+        },
+        {
+          "name": "CleverTap",
+          "icon": "FiBarChart2",
+          "color": "#e0333d"
+        }
+      ]
     },
     {
-      "name": "Kotlin Multiplatform",
-      "icon": "SiKotlin",
-      "color": "#C711E1"
-    },
-    {
-      "name": "Flutter",
-      "icon": "SiFlutter",
-      "color": "#02569B"
-    },
-    {
-      "name": "Dart",
-      "icon": "SiDart",
-      "color": "#0175C2"
-    },
-    {
-      "name": "React Native",
-      "icon": "SiReact",
-      "color": "#61DAFB"
-    },
-    {
-      "name": "Firebase",
-      "icon": "SiFirebase",
-      "color": "#FFCA28"
-    },
-    {
-      "name": "Android Studio",
-      "icon": "SiAndroidstudio",
-      "color": "#3DDC84"
-    },
-    {
-      "name": "Gradle",
-      "icon": "SiGradle",
-      "color": "#5fb5c2"
-    },
-    {
-      "name": "JUnit",
-      "icon": "SiJunit5",
-      "color": "#25A162"
-    },
-    {
-      "name": "Git",
-      "icon": "SiGit",
-      "color": "#F05032"
-    },
-    {
-      "name": "GitHub Actions",
-      "icon": "SiGithubactions",
-      "color": "#2088FF"
-    },
-    {
-      "name": "Jenkins",
-      "icon": "SiJenkins",
-      "color": "#D24939"
-    },
-    {
-      "name": "Docker",
-      "icon": "SiDocker",
-      "color": "#2496ED"
-    },
-    {
-      "name": "Kubernetes",
-      "icon": "SiKubernetes",
-      "color": "#326CE5"
-    },
-    {
-      "name": "Figma",
-      "icon": "SiFigma",
-      "color": "#F24E1E"
-    },
-    {
-      "name": "JavaScript",
-      "icon": "SiJavascript",
-      "color": "#F7DF1E"
-    },
-    {
-      "name": "React",
-      "icon": "SiReact",
-      "color": "#61DAFB"
-    },
-    {
-      "name": "Node.js",
-      "icon": "SiNodedotjs",
-      "color": "#5FA04E"
-    },
-    {
-      "name": "Python",
-      "icon": "SiPython",
-      "color": "#3776AB"
-    },
-    {
-      "name": "MySQL",
-      "icon": "SiMysql",
-      "color": "#4479A1"
-    },
-    {
-      "name": "MongoDB",
-      "icon": "SiMongodb",
-      "color": "#47A248"
+      "group": "Databases",
+      "description": "Data on the device with RoomDB, and on the server with MySQL and MongoDB.",
+      "items": [
+        {
+          "name": "RoomDB",
+          "icon": "SiSqlite",
+          "color": "#4a9fd8"
+        },
+        {
+          "name": "MySQL",
+          "icon": "SiMysql",
+          "color": "#4479A1"
+        },
+        {
+          "name": "MongoDB",
+          "icon": "SiMongodb",
+          "color": "#47A248"
+        }
+      ]
     }
   ],
   "experiences": [
@@ -299,7 +390,7 @@
   "projectsPage": {
     "eyebrow": "My work",
     "heading": "Projects.",
-    "description": "Side projects where I try new stacks before they reach production — from Kotlin Multiplatform apps with real-time location features to competitive coding platforms and automation tools."
+    "description": "Side projects where I try out new stacks before they reach production. They range from Kotlin Multiplatform apps with real-time location features to competitive coding platforms and automation tools."
   },
   "projects": [
     {
@@ -358,9 +449,8 @@
     "ctaHeading": "Other ways to reach me",
     "resume": {
       "label": "Request Resume",
-      "description": "Opens an email asking for my latest resume",
-      "subject": "Resume request — via your portfolio",
-      "body": "Hi Gaurav,\n\nI came across your portfolio and would love to see your latest resume.\n\nName:\nCompany / Role:\n\nThanks!"
+      "description": "Request access to my latest resume on Google Drive",
+      "link": "https://drive.google.com/file/d/1NRmCO4gAfWYrYOSuZ6JjC0YZAYdoAyAS/view?usp=sharing"
     },
     "linkedinDescription": "Connect with me professionally",
     "githubDescription": "Browse my code & side quests"
@@ -447,7 +537,7 @@
     "personalCta": {
       "kicker": "Side quest unlocked",
       "title": "Beyond the Code",
-      "text": "The hobbies, interests and little things that make me, me — away from the keyboard.",
+      "text": "The hobbies, interests and little things that make me who I am, away from the keyboard.",
       "button": "Enter"
     }
   },
@@ -461,7 +551,7 @@
       {
         "icon": "🎮",
         "title": "Gaming",
-        "description": "Story-driven and open-world games — the reason this portfolio looks like one."
+        "description": "Story-driven and open-world games. They're the reason this portfolio looks like one."
       },
       {
         "icon": "✈️",
@@ -487,7 +577,7 @@
       },
       {
         "label": "Building",
-        "value": "Ascent — a KMM app for location-based discovery"
+        "value": "Ascent, a KMM app for location-based discovery"
       },
       {
         "label": "Exploring",
@@ -497,16 +587,16 @@
     "factsHeading": "Fun Facts",
     "facts": [
       "Built my first app back in engineering college.",
-      "This portfolio is a game — try to unlock every achievement.",
+      "This portfolio is a game. Try to unlock every achievement!",
       "Firm believer that great UX is felt, not seen."
     ],
     "quote": {
-      "text": "Dracarys — ship it.",
+      "text": "Dracarys. Ship it.",
       "by": "Every release day"
     }
   },
   "seo": {
-    "title": "Kumar Gaurav — Senior Android Engineer",
-    "description": "Kumar Gaurav — Senior Android Engineer. Explore my portfolio in a 3D dragon world."
+    "title": "Kumar Gaurav | Senior Android Engineer",
+    "description": "Kumar Gaurav, Senior Android Engineer. Explore my portfolio in a 3D dragon world."
   }
 }

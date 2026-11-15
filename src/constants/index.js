@@ -8,12 +8,16 @@ import {
   SiKotlin, SiJetpackcompose, SiAndroid, SiOpenjdk, SiFlutter, SiDart, SiReact,
   SiFirebase, SiAndroidstudio, SiGradle, SiJunit5, SiGit, SiGithubactions, SiJenkins,
   SiDocker, SiKubernetes, SiFigma, SiJavascript, SiNodedotjs, SiPython, SiMysql, SiMongodb,
+  SiCplusplus, SiMicrosoftazure, SiSqlite,
 } from "react-icons/si";
+import { FiZap, FiLayers, FiGrid, FiBox, FiCheckCircle, FiActivity, FiCpu, FiBarChart2 } from "react-icons/fi";
 
 const reactIcons = {
   SiKotlin, SiJetpackcompose, SiAndroid, SiOpenjdk, SiFlutter, SiDart, SiReact,
   SiFirebase, SiAndroidstudio, SiGradle, SiJunit5, SiGit, SiGithubactions, SiJenkins,
   SiDocker, SiKubernetes, SiFigma, SiJavascript, SiNodedotjs, SiPython, SiMysql, SiMongodb,
+  SiCplusplus, SiMicrosoftazure, SiSqlite,
+  FiZap, FiLayers, FiGrid, FiBox, FiCheckCircle, FiActivity, FiCpu, FiBarChart2,
 };
 
 // Image files referenced by name in the JSON (e.g. "nuclei.png").
@@ -43,11 +47,15 @@ export const ui = data.ui;
 export const personal = data.personal;
 export const seo = data.seo;
 
-export const skills = data.skills.map((s) => ({
+const resolveSkill = (s) => ({
   ...s,
-  Icon: reactIcons[s.icon] || null,
+  Icon: reactIcons[s.icon] || (fileUrl(s.icon) ? null : FiBox),
   imageUrl: reactIcons[s.icon] ? null : fileUrl(s.icon),
-}));
+});
+
+// Skills are grouped by category: [{ group, description, items: [{ name, icon, color }] }]
+export const skillGroups = data.skills.map((g) => ({ ...g, items: g.items.map(resolveSkill) }));
+export const skills = skillGroups.flatMap((g) => g.items);
 
 export const experiences = data.experiences.map((e) => ({
   ...e,

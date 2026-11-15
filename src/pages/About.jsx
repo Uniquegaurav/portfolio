@@ -3,10 +3,9 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 
-import { CTA } from "../components";
 import { Link } from "react-router-dom";
 import EarthCanvas from "../components/EarthCanvas";
-import { about, education, experiences, skills, ui } from "../constants";
+import { about, education, experiences, skillGroups, ui } from "../constants";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { textVariant } from "../utils/motion";
@@ -88,37 +87,60 @@ const About = () => {
       </div>
 
       <h3 className='subhead-text mt-20'>{about.skillsHeading}</h3>
-      <motion.ul
-        variants={skillGrid}
-        initial='hidden'
-        whileInView='show'
-        viewport={{ once: true, amount: 0.1 }}
-        className='mt-10 grid grid-cols-3 gap-x-4 gap-y-8 xs:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8'
-      >
-        {skills.map((skill, index) => (
-          <motion.li key={skill.name} variants={skillItem} className='flex flex-col items-center gap-3'>
-            <motion.div
-              drag
-              dragSnapToOrigin
-              dragElastic={0.6}
-              whileHover={{ y: -4 }}
-              whileTap={{ scale: 0.92 }}
-              onHoverStart={sfx.hover}
-              className='block-container h-14 w-14 cursor-grab active:cursor-grabbing sm:h-16 sm:w-16 md:h-20 md:w-20'
+      {about.skillsIntro && <p className='mt-3 max-w-3xl text-[17px] leading-[30px] text-mist'>{about.skillsIntro}</p>}
+
+      <div className='mt-10 space-y-6'>
+        {skillGroups.map((group, gi) => (
+          <motion.section
+            key={group.group}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className='frost-glass grid gap-6 p-5 sm:p-7 lg:grid-cols-[260px_1fr] lg:gap-10'
+          >
+            <div>
+              <p className='text-[11px] font-bold uppercase tracking-[0.25em] text-teal-300'>
+                {String(gi + 1).padStart(2, "0")} · {group.items.length} skills
+              </p>
+              <h4 className='mt-1 font-cinzel text-xl font-bold text-frost'>{group.group}</h4>
+              <p className='mt-2 text-sm leading-relaxed text-mist'>{group.description}</p>
+            </div>
+
+            <motion.ul
+              variants={skillGrid}
+              initial='hidden'
+              whileInView='show'
+              viewport={{ once: true, amount: 0.2 }}
+              className='grid grid-cols-3 gap-x-3 gap-y-6 xs:grid-cols-4 sm:grid-cols-5 lg:grid-cols-6'
             >
-              <div className={`btn-back rounded-xl ${index % 3 === 2 ? "btn-back-ember" : "btn-back-teal"}`} />
-              <div className='btn-front rounded-xl flex justify-center items-center'>
-                {skill.Icon ? (
-                  <skill.Icon className='w-1/2 h-1/2' style={{ color: skill.color }} aria-hidden='true' />
-                ) : (
-                  <img src={skill.imageUrl} alt='' className='w-1/2 h-1/2 object-contain' />
-                )}
-              </div>
-            </motion.div>
-            <span className='text-center text-xs font-semibold leading-tight text-frost/85 sm:text-[13px]'>{skill.name}</span>
-          </motion.li>
+              {group.items.map((skill, index) => (
+                <motion.li key={skill.name} variants={skillItem} className='flex flex-col items-center gap-3'>
+                  <motion.div
+                    drag
+                    dragSnapToOrigin
+                    dragElastic={0.6}
+                    whileHover={{ y: -4 }}
+                    whileTap={{ scale: 0.92 }}
+                    onHoverStart={sfx.hover}
+                    className='block-container h-14 w-14 cursor-grab active:cursor-grabbing sm:h-16 sm:w-16'
+                  >
+                    <div className={`btn-back rounded-xl ${(index + gi) % 3 === 2 ? "btn-back-ember" : "btn-back-teal"}`} />
+                    <div className='btn-front rounded-xl flex justify-center items-center'>
+                      {skill.Icon ? (
+                        <skill.Icon className='w-1/2 h-1/2' style={{ color: skill.color }} aria-hidden='true' />
+                      ) : (
+                        <img src={skill.imageUrl} alt='' className='w-1/2 h-1/2 object-contain' />
+                      )}
+                    </div>
+                  </motion.div>
+                  <span className='text-center text-xs font-semibold leading-tight text-frost/85'>{skill.name}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
+          </motion.section>
         ))}
-      </motion.ul>
+      </div>
 
       <div className='py-16'>
         <h3 className='subhead-text'>{about.experienceHeading}</h3>
@@ -223,8 +245,6 @@ const About = () => {
           <span className='btn shrink-0'>{ui.personalCta.button} →</span>
         </Link>
       </motion.div>
-
-      <CTA />
     </div>
   );
 };
