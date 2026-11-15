@@ -1,47 +1,76 @@
-/* navbar.css */
+/* navbar.css — frosted glass bar in the House of the Dragon theme */
 
-.header {
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   display: flex;
   justify-content: flex-end;
-  width: 100%;
-  position: fixed;
-  z-index: 1000;
+  padding: 14px 24px;
+  pointer-events: none; /* let the 3D canvas receive drags around the bar */
 }
 
 .navbar-container {
+  pointer-events: auto;
   display: flex;
-  background:  rgba(173, 216, 230, 0.3); 
-  backdrop-filter: blur(10px);
   align-items: center;
-  justify-content: space-between;
-  width: 60%;
-  margin-left: auto;
-  padding-left: 5%;
- 
+  gap: 12px;
+  padding: 6px 6px 6px 14px;
+  background: rgba(10, 20, 22, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.6);
 }
-.navbar-container-home {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-left: auto;
- 
+
+/* On the 3D world the bar is lighter so the scene stays the hero */
+.site-header.on-home .navbar-container {
+  background: rgba(173, 216, 230, 0.12);
 }
 
 .logo-container {
-  margin-left: auto;
+  display: block;
+  flex-shrink: 0;
 }
 
 .logo {
-  width: 60px;
-  height: 60px;
+  width: 48px;
+  height: 48px;
   transition: transform 0.5s ease-in-out;
 }
+.logo-container:hover .logo {
+  transform: rotate(-8deg) scale(1.05);
+}
 
-@media (max-width: 640px) {
-  .logo {
-    width: 50px; 
-    height: 50px;
-  }
+.nav-links {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-links a {
+  color: #e7f2f4;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  padding: 9px 16px;
+  border-radius: 10px;
+  transition: color 0.25s, background-color 0.25s;
+}
+
+.nav-links a:hover {
+  color: #5eead4;
+  background: rgba(45, 212, 191, 0.08);
+}
+
+.nav-links a.active {
+  color: #5eead4;
+  background: rgba(45, 212, 191, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(45, 212, 191, 0.35);
 }
 
 .menu-icon {
@@ -49,59 +78,44 @@
   cursor: pointer;
   flex-direction: column;
   justify-content: space-between;
-  width: 35px;
-  height: 30px;
-  padding: 5px;
-  position: absolute;
-  top: 15px;
-  left: 15px; /* Align to the left */
-  z-index: 1100;
+  width: 40px;
+  height: 40px;
+  padding: 11px 9px;
+  background: transparent;
+  border: 0;
 }
 
 .bar {
+  display: block;
   width: 100%;
-  height: 4px;
-  background-color: black;
-  transition: background-color 0.3s ease-in-out;
+  height: 2.5px;
+  border-radius: 2px;
+  background-color: #e7f2f4;
+  transition: transform 0.3s ease, opacity 0.2s ease;
 }
 
 .menu-icon.active .bar:nth-child(1) {
-  transform: rotate(-45deg) translate(-5px, 6px);
+  transform: translateY(7.5px) rotate(45deg);
 }
-
 .menu-icon.active .bar:nth-child(2) {
   opacity: 0;
 }
-
 .menu-icon.active .bar:nth-child(3) {
-  transform: rotate(45deg) translate(-5px, -6px);
-}
-
-.nav-links {
-  display: flex;
-  gap: 20px;
-}
-
-.nav-links a {
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 10px;
-  transition: color 0.3s ease-in-out;
-}
-
-.nav-links a:hover {
-  color: lightblue;
+  transform: translateY(-7.5px) rotate(-45deg);
 }
 
 @media (max-width: 768px) {
-  .navbar-container {
-    width: 100%;
-    justify-content: flex-end;
+  .site-header {
+    padding: 12px 14px;
   }
 
-  .logo-container {
-    margin-left: 10px; /* Adjust margin for spacing */
+  .navbar-container {
+    padding: 4px 4px 4px 4px;
+  }
+
+  .logo {
+    width: 42px;
+    height: 42px;
   }
 
   .menu-icon {
@@ -109,27 +123,76 @@
   }
 
   .nav-links {
-    display: flex;
+    display: none;
     flex-direction: column;
     position: absolute;
-    top: 60px;
-    right: 0;
-    background: rgba(173, 216, 230, 0.3);
-    backdrop-filter: blur(3px);
-    width: 100%;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    display: none;
+    top: 72px;
+    right: 14px;
+    left: 14px;
+    padding: 8px;
+    background: rgba(10, 20, 22, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7);
   }
 
   .nav-links.show {
     display: flex;
+    animation: navDrop 0.25s ease-out;
   }
 
   .nav-links a {
-    width: 100%;
-    padding: 10px;
+    padding: 14px 16px;
+    font-size: 16px;
   }
-  .nav-links a:hover {
-  background-color: lightcyan;
+}
+
+@keyframes navDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
   }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.sound-toggle {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  color: #9db5ba;
+  font-size: 18px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: color 0.2s, background-color 0.2s;
+}
+.sound-toggle:hover {
+  color: #5eead4;
+  background: rgba(45, 212, 191, 0.08);
+}
+.sound-toggle {
+  position: relative;
+}
+.sound-toggle.is-on {
+  color: #5eead4;
+}
+/* pulsing ring while the world's music can play */
+.sound-wave {
+  position: absolute;
+  inset: 4px;
+  border-radius: 10px;
+  border: 1px solid rgba(94, 234, 212, 0.6);
+  animation: sound-wave 1.8s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes sound-wave {
+  from { transform: scale(0.8); opacity: 0.9; }
+  to { transform: scale(1.35); opacity: 0; }
 }

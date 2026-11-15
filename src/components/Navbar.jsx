@@ -1,46 +1,75 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { gauravLogo } from "../assets/images";
 import "./navbar.css";
-import { motion } from "framer-motion";
+import { FiVolume2, FiVolumeX } from "react-icons/fi";
+import useSound from "../hooks/useSound";
+import { sfx } from "../lib/sfx";
+import { ui } from "../constants";
 
 
 const Navbar = () => {
   const { pathname } = useLocation();
-  const isNotHomePage = pathname !== "/";
+  const isHome = pathname === "/";
   const [showMenu, setShowMenu] = useState(false);
+  const { muted, toggle } = useSound();
 
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
-  };
-  
-  
+  // Close the mobile menu whenever the route changes
+  useEffect(() => {
+    setShowMenu(false);
+  }, [pathname]);
+
   return (
-    <header className={`header ${showMenu ? "show-menu" : ""}`}>
-      <div className={isNotHomePage ? "navbar-container" : "navbar-container-home"}>
-        {isNotHomePage && (
-          <div className={`menu-icon ${showMenu ? "active" : ""}`} onClick={toggleMenu}>
-            <div className="bar"></div>
-            <div className="bar"></div>
-            <div className="bar"></div>
-          </div>
-        )}
-        {isNotHomePage && (
-          <motion.nav className={`nav-links ${showMenu ? "show" : ""}`}>
-            <NavLink onClick={toggleMenu} to="/about">About</NavLink>
-            <NavLink onClick={toggleMenu} to="/projects">Projects</NavLink>
-            <NavLink onClick={toggleMenu} to="/contact">Contact</NavLink>
-          </motion.nav>
-        )}
-        <div className="logo-container">
-          <NavLink to={isNotHomePage ? "/" : "/about"}>
-            <img
-              src={gauravLogo}
-              alt="logo"
-              className="logo object-contain"
-            />
-          </NavLink>
-        </div>
+    <header className={`site-header ${isHome ? "on-home" : ""}`}>
+      <div className="navbar-container">
+        <button
+          className={`menu-icon ${showMenu ? "active" : ""}`}
+          onClick={() => {
+            sfx.click();
+            setShowMenu((s) => !s);
+          }}
+          aria-label="Toggle navigation"
+          aria-expanded={showMenu}
+        >
+          <span className="bar" />
+          <span className="bar" />
+          <span className="bar" />
+        </button>
+
+        <nav className={`nav-links ${showMenu ? "show" : ""}`} aria-label="Main">
+          {ui.nav.map((l) => (
+            <NavLink
+              key={l.to}
+              to={l.to}
+              end={l.to === "/"}
+              onMouseEnter={sfx.hover}
+              onClick={sfx.click}
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              {l.label}
+            </NavLink>
+          ))}
+        </nav>
+
+        {/* One sound switch for music + effects, on every page */}
+        <button
+          type="button"
+          className={`sound-toggle ${muted ? "" : "is-on"}`}
+          onClick={() => {
+            toggle();
+            if (muted) setTimeout(sfx.click, 0);
+          }}
+          aria-label={muted ? ui.soundOff : ui.soundOn}
+          aria-pressed={!muted}
+          title={muted ? ui.soundOff : ui.soundOn}
+        >
+          {muted ? <FiVolumeX /> : <FiVolume2 />}
+          {!muted && isHome && <span className="sound-wave" aria-hidden="true" />}
+        </button>
+
+        <NavLink to={isHome ? "/about" : "/"} className="logo-container" aria-label={isHome ? ui.nav[1]?.label : ui.nav[0]?.label}>
+          <img src={gauravLogo} alt="Gaurav logo" className="logo object-contain" />
+        </NavLink>
       </div>
     </header>
   );
